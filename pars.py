@@ -4,7 +4,7 @@ from models import Anime, Genres, Years, Photo
 
 def get_anime(url):
     """Запись всех аниме"""
-    for i in range(129):
+    for i in range(1):
         url1 = url + "&page=" + str(i+1)
         req = requests.get(url1, timeout=10)
         scr = req.text
