@@ -1,2 +1,4 @@
 aiogram
 peewee
+bs4
+requests

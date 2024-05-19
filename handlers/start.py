@@ -17,8 +17,7 @@ async def start_handler(msg: Message):
         BotCommand(command='start', description='Запуск бота'),
         BotCommand(command='help', description='Справка'),
         BotCommand(command='menu', description='Открыть меню'),
-    ])
-    User.get_or_create(tg_user=msg.from_user.id)
+        BotCommand(command='set_time', description='Установка времени рассылки')])
     await msg.answer_photo(caption='Здравствуй, я бот который поможет тебе подобрать аниме. \
                            \nЧтобы узнать как пользоваться ботом введите команду /help 🤖', photo=FSInputFile('to/AniVaultBotFinal.png'))
     
