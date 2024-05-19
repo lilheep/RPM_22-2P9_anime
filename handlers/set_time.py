@@ -17,22 +17,19 @@ async def set_time_handler(msg: Message, state: FSMContext):
 @router.message(SetTime.time)
 async def set_time_by_notification_handler(msg: Message, state: FSMContext):
     """мы используем async def для определения функции"""
-    from main import GLOBAL_VARS
 
     user_id = msg.from_user.id
     time_str = msg.text
-    try:
         # Парсинг времени
-        hours, minutes = map(int, time_str.split(':'))
-        if not (0 <= hours < 24 and 0 <= minutes < 60):
-            raise ValueError
-
+    hours, minutes = map(int, time_str.split(':'))
+    if (0 <= hours < 24 and 0 <= minutes < 60):
         # Сохранение времени пользователя в базе данных
         user, created = User.get_or_create(tg_user=user_id)
         user.time = time_str
         user.save()
-
+        
         await msg.answer(f"Время {time_str} успешно сохранено для пользователя {user_id}.")
-        state.clear
-    except ValueError:
+        await state.clear()
+
+    else:
         await msg.answer("Некорректный формат времени. Пожалуйста, введите время в формате чч:мм.")

@@ -69,7 +69,7 @@ async def send_admin():
 
 async def update_schedule():
     while True:
-        await asyncio.sleep(50)  # Проверяем каждую минуту
+        await asyncio.sleep(30)  # Проверяем каждую минуту
         new_time = await get_time_notify()
         if new_time != GLOBAL_VARS['SEND_TIME']:
             GLOBAL_VARS['SEND_TIME'] = new_time
